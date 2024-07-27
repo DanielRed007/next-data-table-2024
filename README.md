@@ -23,7 +23,7 @@ To install the project, follow these steps:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/myproject.git
+    git clone https://github.com/DanielRed007/next-data-table-2024.git
     ```
 2. Navigate to the project directory:
     ```sh
