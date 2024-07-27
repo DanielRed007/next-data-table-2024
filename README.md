@@ -22,17 +22,17 @@ The following mockup will serve as UI guide to the development
 To install the project, follow these steps:
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/DanielRed007/next-data-table-2024.git
-    ```
+   ```sh
+   git clone https://github.com/DanielRed007/next-data-table-2024.git
+   ```
 2. Navigate to the project directory:
-    ```sh
-    cd myproject
-    ```
+   ```sh
+   cd myproject
+   ```
 3. Install dependencies:
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 ## ![#daa520](https://placehold.co/15x15/daa520/daa520.png) Usage
 
@@ -41,3 +41,4 @@ To start the application, run:
 ```sh
 npm run dev
 
+```
