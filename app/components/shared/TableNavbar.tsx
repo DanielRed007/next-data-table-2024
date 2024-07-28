@@ -1,10 +1,17 @@
 import { Fragment } from "react";
 import { CustomButton } from "./CustomButton";
+import {
+  AdjustmentsHorizontalIcon,
+  BeakerIcon,
+  CloudArrowDownIcon,
+  PlusIcon,
+  TrashIcon,
+} from "@heroicons/react/16/solid";
 
 export const TableNavbar = () => {
   return (
     <Fragment>
-      <nav className='bg-gray-800 p-4 flex justify-between items-center'>
+      <nav className='bg-white dark:bg-gray-800 p-4 flex justify-between items-center'>
         <div className='flex flex-col md:flex-row items-start md:items-center'>
           <div className='flex space-x-4'>
             <h1 className='text-white text-xl'>Título 1</h1>
@@ -17,28 +24,32 @@ export const TableNavbar = () => {
 
         <div className='flex space-x-4'>
           <CustomButton
-            buttonColor='blue'
+            textColor='white'
+            fontType='bold'
+            buttonText='Delete'
+            icon={<TrashIcon className='size-6 text-blue-200' />}
+          />
+          <CustomButton
+            textColor='white'
+            fontType='bold'
+            buttonText='Filters'
+            icon={
+              <AdjustmentsHorizontalIcon className='size-6 text-blue-200' />
+            }
+          />
+          <CustomButton
             textColor='white'
             fontType='bold'
             buttonText='Export'
+            outline={true}
+            icon={<CloudArrowDownIcon className='size-6 text-blue-200' />}
           />
           <CustomButton
-            buttonColor='red'
+            buttonColor='blue'
             textColor='white'
             fontType='bold'
-            buttonText='delete'
-          />
-          <CustomButton
-            buttonColor='green'
-            textColor='white'
-            fontType='bold'
-            buttonText='filters'
-          />
-          <CustomButton
-            buttonColor='yellow'
-            textColor='white'
-            fontType='bold'
-            buttonText='Add Record'
+            buttonText='Add new record'
+            icon={<PlusIcon className='size-6 text-blue-200' />}
           />
         </div>
       </nav>
