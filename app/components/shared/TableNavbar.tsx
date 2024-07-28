@@ -7,22 +7,23 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@heroicons/react/16/solid";
+import { CustomAlert } from "./CustomAlert";
 
 export const TableNavbar = () => {
   return (
     <Fragment>
       <nav className='bg-white dark:bg-gray-800 p-4 flex justify-between items-center'>
-        <div className='flex flex-col md:flex-row items-start md:items-center'>
-          <div className='flex space-x-4'>
-            <h1 className='text-white text-xl'>Título 1</h1>
-            <h1 className='text-white text-xl'>Título 2</h1>
+        <div className=''>
+          <div className='flex flex-column items-center'>
+            <h1 className='text-white text-xl mr-3'>Record Data Registry</h1>
+            <CustomAlert textContent='Data Entry' />
           </div>
-          <p className='text-gray-400 text-sm mt-2 md:mt-0'>
-            Texto adicional debajo de los títulos
+          <p className='text-gray-400 text-sm mt-3'>
+            Explore the records by yourself
           </p>
         </div>
 
-        <div className='flex space-x-4'>
+        <div className='flex space-x-4' data-testid='navbar-button-section'>
           <CustomButton
             textColor='white'
             fontType='bold'
