@@ -1,13 +1,12 @@
 import { Fragment } from "react";
-import { CustomButton } from "./CustomButton";
+import { CustomButton } from "../shared/CustomButton";
 import {
   AdjustmentsHorizontalIcon,
-  BeakerIcon,
   CloudArrowDownIcon,
   PlusIcon,
   TrashIcon,
 } from "@heroicons/react/16/solid";
-import { CustomAlert } from "./CustomAlert";
+import { CustomAlert } from "../shared/CustomAlert";
 
 export const TableNavbar = () => {
   return (
