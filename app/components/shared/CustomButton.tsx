@@ -1,11 +1,13 @@
 import { FC, Fragment, ReactElement } from "react";
+import { getColorVariant, getOutline } from "@/app/util/ui/color-util";
 
 interface Props {
-  buttonColor: string;
+  buttonColor?: string;
   textColor: string;
   buttonText: string;
   fontType: string;
   icon?: ReactElement;
+  outline?: boolean;
 }
 
 export const CustomButton: FC<Props> = ({
@@ -14,13 +16,17 @@ export const CustomButton: FC<Props> = ({
   textColor,
   fontType,
   icon,
+  outline = false,
 }) => {
+  const colorVariant = getColorVariant(buttonColor);
+  const buttonOutline = getOutline(outline);
+
+  const getButtonProps = `flex items-center space-x-2 ${colorVariant} ${buttonOutline} text-${textColor} text-sm font-${fontType} py-2 px-4 rounded-md`;
+
   return (
     <Fragment>
-      <button
-        className={`flex items-center space-x-2 bg-${buttonColor}-500 hover:bg-${buttonColor}-700 text-${textColor} font-${fontType} py-2 px-4 rounded`}
-      >
-        {icon && <span>{icon}</span>} {/* Render the icon if it is provided */}
+      <button className={getButtonProps}>
+        {icon && <span>{icon}</span>}
         <span>{buttonText}</span>
       </button>
     </Fragment>
