@@ -27,7 +27,7 @@ To install the project, follow these steps:
    ```
 2. Navigate to the project directory:
    ```sh
-   cd myproject
+   cd next-data-table-2024
    ```
 3. Install dependencies:
    ```sh
