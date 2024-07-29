@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import CustomCheckbox from "../shared/CustomCheckbox";
 import { EllipsisHorizontalIcon } from "@heroicons/react/16/solid";
+import { CustomDropdown } from "../shared/CustomDropdown";
 
 interface Props {
   data: Array<{ [key: string]: any }>;
@@ -31,8 +32,9 @@ export const CustomTableRow: FC<Props> = ({
               {row[column.accessor]}
             </td>
           ))}
-          <td key={"column.options"} className='p-4 border-b border-gray-200'>
-            <EllipsisHorizontalIcon className='size-4 text-blue-700' />
+          <td key={"column.options"} className='p-6 border-b border-gray-200'>
+            {/* <EllipsisHorizontalIcon className='size-4 text-blue-700' /> */}
+            <CustomDropdown />
           </td>
         </tr>
       ))}
