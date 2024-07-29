@@ -1,30 +1,36 @@
+import { Checkbox } from "@headlessui/react";
+
 interface CheckboxProps {
   id: string;
-  label?: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
 }
 
 export const CustomCheckbox: React.FC<CheckboxProps> = ({
   id,
-  label,
   checked,
   onChange,
 }) => {
   return (
     <div className='flex items-center'>
-      <input
-        id={id}
-        type='checkbox'
-        className='h-5 w-5 text-blue-600 border-gray-300 rounded-lg focus:ring-blue-500'
+      <Checkbox
         checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-      />
-      {label && (
-        <label htmlFor={id} className='ml-2 block text-sm text-gray-900'>
-          {label}
-        </label>
-      )}
+        onChange={onChange}
+        className='group block size-5 rounded-md border bg-white data-[checked]:bg-blue-500'
+      >
+        <svg
+          className='stroke-white opacity-0 group-data-[checked]:opacity-100'
+          viewBox='0 0 14 14'
+          fill='none'
+        >
+          <path
+            d='M3 8L6 11L11 3.5'
+            strokeWidth={2}
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </Checkbox>
     </div>
   );
 };

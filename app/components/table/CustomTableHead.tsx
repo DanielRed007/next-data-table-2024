@@ -34,7 +34,7 @@ export const CustomTableHead: FC<Props> = ({
           </th>
         ))}
         <th
-          key={"column-selector"}
+          key={"column-options"}
           className='p-4 border-b-2 border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'
         ></th>
       </tr>
