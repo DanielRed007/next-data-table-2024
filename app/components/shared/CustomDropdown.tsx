@@ -1,7 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   ArchiveBoxXMarkIcon,
-  ChevronDownIcon,
   EllipsisHorizontalIcon,
   PencilIcon,
   Square2StackIcon,

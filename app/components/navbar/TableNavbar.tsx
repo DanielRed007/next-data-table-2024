@@ -7,8 +7,12 @@ import {
   TrashIcon,
 } from "@heroicons/react/16/solid";
 import { CustomAlert } from "../shared/CustomAlert";
+import { useTheme } from "../../context/ThemeContext";
+import { CustomSwitch } from "../shared/CustomSwitch";
 
 export const TableNavbar = () => {
+  // const { isToggled, toggleTheme, theme } = useTheme();
+
   return (
     <Fragment>
       <nav className='bg-white dark:bg-gray-800 p-4 flex justify-between items-center'>
@@ -23,6 +27,7 @@ export const TableNavbar = () => {
         </div>
 
         <div className='flex space-x-4' data-testid='navbar-button-section'>
+          {/* <CustomSwitch enabled={true} toggleSwitch={toggleTheme} /> */}
           <CustomButton
             textColor='white'
             fontType='bold'
