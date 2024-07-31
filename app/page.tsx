@@ -116,7 +116,10 @@ export default function Home() {
   ];
 
   return (
-    <main className='flex min-h-screen flex-col items-center text-left justify-between p-24'>
+    <main
+      data-testid='main-page-container'
+      className='flex min-h-screen flex-col items-center text-left justify-between p-24'
+    >
       <RecordTable data={data} columns={columns} />
     </main>
   );
