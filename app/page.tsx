@@ -1,3 +1,7 @@
+"use client";
+
+import { Fragment } from "react";
+import { TableNavbar } from "./components/navbar/TableNavbar";
 import { RecordTable } from "./components/table/RecordTable";
 
 export default function Home() {
@@ -116,11 +120,14 @@ export default function Home() {
   ];
 
   return (
-    <main
-      data-testid='main-page-container'
-      className='flex min-h-screen flex-col items-center text-left justify-between p-24'
-    >
-      <RecordTable data={data} columns={columns} />
-    </main>
+    <Fragment>
+      <TableNavbar />
+      <main
+        data-testid='main-page-container'
+        className='flex min-h-screen flex-col items-center text-left justify-between p-24'
+      >
+        <RecordTable data={data} columns={columns} />
+      </main>
+    </Fragment>
   );
 }
