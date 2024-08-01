@@ -1,4 +1,6 @@
-import { Fragment } from "react";
+"use client";
+
+import { Fragment, useEffect } from "react";
 import { CustomButton } from "../shared/CustomButton";
 import {
   AdjustmentsHorizontalIcon,
@@ -7,27 +9,48 @@ import {
   TrashIcon,
 } from "@heroicons/react/16/solid";
 import { CustomAlert } from "../shared/CustomAlert";
-import { useTheme } from "../../context/ThemeContext";
 import { CustomSwitch } from "../shared/CustomSwitch";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux/store";
+import { toggleTheme } from "../../redux/themeSlice";
 
 export const TableNavbar = () => {
-  // const { isToggled, toggleTheme, theme } = useTheme();
+  const dispatch = useAppDispatch();
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
+  // Effect to add/remove dark class on body
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
+  };
 
   return (
     <Fragment>
-      <nav className='bg-white dark:bg-gray-800 p-4 flex justify-between items-center'>
+      <nav className='bg-violet-800 dark:bg-lime-900 p-4 flex justify-between items-center'>
         <div className=''>
           <div className='flex flex-column items-center'>
-            <h1 className='text-white text-xl mr-3'>Record Data Registry</h1>
+            <h1 className='text-white text-bold text-xl mr-3'>
+              Record Data Registry
+            </h1>
             <CustomAlert textContent='Data Entry' />
           </div>
-          <p className='text-gray-400 text-sm mt-3'>
+          <p className='text-gray-200 text-bold text-sm mt-3'>
             Explore the records by yourself
           </p>
         </div>
 
         <div className='flex space-x-4' data-testid='navbar-button-section'>
-          {/* <CustomSwitch enabled={true} toggleSwitch={toggleTheme} /> */}
+          <CustomSwitch
+            enabled={theme === "dark"}
+            toggleSwitch={handleToggleTheme}
+          />
           <CustomButton
             textColor='white'
             fontType='bold'
