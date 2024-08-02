@@ -17,7 +17,7 @@ export const CustomTableHead: FC<Props> = ({
       <tr>
         <th
           key={"column-selector"}
-          className='p-4 border-b-2 border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'
+          className='p-4 bg-violet-400 dark:bg-lime-400 text-left text-sm font-semibold text-white uppercase rounded-tl-lg'
         >
           <CustomCheckbox
             id='main-selector'
@@ -28,14 +28,14 @@ export const CustomTableHead: FC<Props> = ({
         {columns.map((column) => (
           <th
             key={column.accessor}
-            className='p-4 border-b-2 border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'
+            className='p-4 bg-violet-400 dark:bg-lime-400 text-left text-sm font-semibold text-white uppercase'
           >
             {column.header}
           </th>
         ))}
         <th
           key={"column-options"}
-          className='p-4 border-b-2 border-gray-200 bg-gray-50 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'
+          className='p-4 bg-violet-400 dark:bg-lime-400 text-left text-sm font-semibold text-white uppercase rounded-tr-lg'
         ></th>
       </tr>
     </thead>

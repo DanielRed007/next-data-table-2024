@@ -124,7 +124,7 @@ export default function Home() {
       <TableNavbar />
       <main
         data-testid='main-page-container'
-        className='flex min-h-screen flex-col items-center text-left justify-between p-24'
+        className='flex min-h-screen flex-col items-center text-left justify-between p-24 bg-violet-200 dark:bg-lime-100'
       >
         <RecordTable data={data} columns={columns} />
       </main>

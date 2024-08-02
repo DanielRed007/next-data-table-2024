@@ -19,8 +19,11 @@ export const CustomTableRow: FC<Props> = ({
   return (
     <tbody>
       {data.map((row, rowIndex) => (
-        <tr key={rowIndex} className='hover:bg-gray-50'>
-          <td key={"column.accessor"} className='p-4 border-b border-gray-200'>
+        <tr
+          key={rowIndex}
+          className='dark:hover:bg-lime-200 hover:bg-violet-200'
+        >
+          <td key={"column.accessor"} className='p-4 border-b'>
             <CustomCheckbox
               id='main-selector'
               checked={rowChecked}
@@ -28,12 +31,11 @@ export const CustomTableRow: FC<Props> = ({
             />
           </td>
           {columns.map((column) => (
-            <td key={column.accessor} className='p-4 border-b border-gray-200'>
+            <td key={column.accessor} className='p-4 border-b'>
               {row[column.accessor]}
             </td>
           ))}
-          <td key={"column.options"} className='p-6 border-b border-gray-200'>
-            {/* <EllipsisHorizontalIcon className='size-4 text-blue-700' /> */}
+          <td key={"column.options"} className='p-6 border-b'>
             <CustomDropdown />
           </td>
         </tr>

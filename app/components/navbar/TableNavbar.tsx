@@ -55,14 +55,16 @@ export const TableNavbar = () => {
             textColor='white'
             fontType='bold'
             buttonText='Delete'
-            icon={<TrashIcon className='size-6 text-blue-200' />}
+            icon={
+              <TrashIcon className='size-6 text-violet-200 dark:text-lime-300' />
+            }
           />
           <CustomButton
             textColor='white'
             fontType='bold'
             buttonText='Filters'
             icon={
-              <AdjustmentsHorizontalIcon className='size-6 text-blue-200' />
+              <AdjustmentsHorizontalIcon className='size-6 text-violet-200 dark:text-lime-300' />
             }
           />
           <CustomButton
@@ -70,14 +72,18 @@ export const TableNavbar = () => {
             fontType='bold'
             buttonText='Export'
             outline={true}
-            icon={<CloudArrowDownIcon className='size-6 text-blue-200' />}
+            icon={
+              <CloudArrowDownIcon className='size-6 text-violet-200 dark:text-lime-300' />
+            }
           />
           <CustomButton
             buttonColor='blue'
             textColor='white'
             fontType='bold'
             buttonText='Add new record'
-            icon={<PlusIcon className='size-6 text-blue-200' />}
+            icon={
+              <PlusIcon className='size-6 text-violet-200 dark:text-lime-300' />
+            }
           />
         </div>
       </nav>

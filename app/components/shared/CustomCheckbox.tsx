@@ -16,7 +16,7 @@ export const CustomCheckbox: React.FC<CheckboxProps> = ({
       <Checkbox
         checked={checked}
         onChange={onChange}
-        className='group block size-5 rounded-md border bg-white data-[checked]:bg-blue-500'
+        className='group block size-5 rounded-md border bg-white data-[checked]:bg-violet-700 dark:data-[checked]:bg-lime-800'
       >
         <svg
           className='stroke-white opacity-0 group-data-[checked]:opacity-100'

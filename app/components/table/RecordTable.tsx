@@ -18,7 +18,7 @@ export const RecordTable: React.FC<TableProps> = ({ data, columns }) => {
 
   return (
     <div className='overflow-x-auto'>
-      <table className='min-w-full bg-white border border-gray-200'>
+      <table className='min-w-full bg-violet-100 dark:bg-lime-100 border'>
         <CustomTableHead
           columns={columns}
           mainSelected={mainCheckboxSelected}

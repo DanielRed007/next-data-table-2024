@@ -11,7 +11,7 @@ export const CustomSwitch: FC<Props> = ({ enabled, toggleSwitch }) => {
     <Switch
       checked={enabled}
       onChange={toggleSwitch}
-      className='group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10'
+      className='group relative mt-2 bg-violet-300 dark:bg-lime-500 flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10'
     >
       <span
         aria-hidden='true'
