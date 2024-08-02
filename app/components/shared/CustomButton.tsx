@@ -3,7 +3,7 @@ import { getColorVariant, getOutline } from "@/app/util/ui/color-util";
 
 interface Props {
   buttonColor?: string;
-  textColor: string;
+  textColor?: string;
   buttonText: string;
   fontType: string;
   icon?: ReactElement;
@@ -21,7 +21,7 @@ export const CustomButton: FC<Props> = ({
   const colorVariant = getColorVariant(buttonColor);
   const buttonOutline = getOutline(outline);
 
-  const getButtonProps = `flex items-center space-x-2 ${colorVariant} ${buttonOutline} text-${textColor} text-sm font-${fontType} py-2 px-4 rounded-md`;
+  const getButtonProps = `flex items-center space-x-2 bg-violet-400 dark:bg-lime-600 ${buttonOutline} text-violet-950 dark:text-lime-950 text-sm font-${fontType} py-2 px-4 rounded-md`;
 
   return (
     <Fragment>
