@@ -1,112 +1,22 @@
 "use client";
 
-import { Fragment } from "react";
+import { useEffect, Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchInfo } from "./redux/infoSlice"; // Adjust the path as necessary
+import { RootState, AppDispatch } from "./redux/store"; // Adjust the path as necessary
 import { TableNavbar } from "./components/navbar/TableNavbar";
 import { RecordTable } from "./components/table/RecordTable";
+import { Row } from "./types/row";
 
 export default function Home() {
-  const data = [
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-    {
-      ["regular-col-1"]: "Regular Text Column",
-      ["regular-col-2"]: "Regular Text Column",
-      ["regular-col-3"]: "Regular Text Column",
-      ["regular-col-4"]: "Regular Text Column",
-      ["regular-col-5"]: "Regular Text Column",
-      ["regular-col-6"]: "Regular Text Column",
-      ["active-col-1"]: "Active Column",
-      ["regular-col-7"]: "Regular Text Column",
-    },
-  ];
+  const dispatch = useDispatch<AppDispatch>();
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.info
+  );
+
+  useEffect(() => {
+    dispatch(fetchInfo());
+  }, [dispatch]);
 
   const columns = [
     { header: "Regular Text", accessor: "regular-col-1" },
@@ -118,6 +28,9 @@ export default function Home() {
     { header: "Active", accessor: "active-col-1" },
     { header: "Regular Text", accessor: "regular-col-7" },
   ];
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <Fragment>
