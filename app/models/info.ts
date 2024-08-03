@@ -1,20 +1,21 @@
 import mongoose from "mongoose";
 
+const FieldSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+  },
+  value: {
+    type: String,
+    required: true,
+  },
+});
+
 const InfoSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please provide an name"],
-    unique: true,
-  },
-  email: {
-    type: String,
-    required: [true, "Please provide an email"],
-    unique: false,
-  },
-  message: {
-    type: String,
-    required: [true, "Please provide an message"],
-    unique: false,
+  fields: {
+    type: Map,
+    of: FieldSchema,
+    default: {},
   },
 });
 

@@ -17,22 +17,17 @@ export const fetchInfo = createAsyncThunk(
   "info/fetchInfo",
   async (_, { rejectWithValue }) => {
     try {
-      //   const response = await apiHandler({
-      //     endpoint: "/api/info",
-      //     method: "GET",
-      //     headers: { "Content-Type": "application/json" },
-      //   });
-
-      const response = await fetch("http://localhost:3000/api/info/", {
+      const response = await apiHandler({
+        endpoint: "/api/info",
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
-      // console.table(response);
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+      const data = await response.json();
+      return data;
     } catch (error: any) {
       return rejectWithValue(error.message || "An error occurred");
     }
