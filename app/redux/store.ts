@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import themeReducer from "./themeSlice";
+import infoReducer from "./infoSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
+    info: infoReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

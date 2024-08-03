@@ -24,12 +24,14 @@ export const RecordTable: React.FC<TableProps> = ({ data, columns }) => {
           mainSelected={mainCheckboxSelected}
           onChange={handleMainCheckboxSelector}
         />
-        <CustomTableRow
-          data={data}
-          columns={columns}
-          rowChecked={mainCheckboxSelected}
-          onChange={handleMainCheckboxSelector}
-        />
+        {data && (
+          <CustomTableRow
+            data={data}
+            columns={columns}
+            rowChecked={mainCheckboxSelected}
+            onChange={handleMainCheckboxSelector}
+          />
+        )}
       </table>
     </div>
   );
