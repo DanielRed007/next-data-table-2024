@@ -11,10 +11,13 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "@reduxjs/toolkit": "^2.2.7",
+    "@types/faker": "^6.6.9",
     "@types/mongoose": "^5.11.97",
+    "faker": "^6.6.6",
     "mongoose": "^8.5.2",
     "next": "14.2.5",
     "react": "^18",

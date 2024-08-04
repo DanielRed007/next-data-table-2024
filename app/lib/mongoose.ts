@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { faker } from "@faker-js/faker";
+import User, { IUser } from "../models/user";
 
 const MONGODB_URI: string = process.env.MONGODB_URI || "";
 
@@ -11,6 +13,25 @@ let cached = global.mongoose;
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
+
+const generateFakeUsers = (numUsers: number): Partial<IUser>[] => {
+  const users: Partial<IUser>[] = [];
+  for (let i = 0; i < numUsers; i++) {
+    users.push({
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      email: faker.internet.email(),
+      age: faker.number.int({ min: 18, max: 65 }),
+    });
+  }
+  return users;
+};
+
+export const seedDatabase = async () => {
+  const fakeUsers = generateFakeUsers(50);
+  await User.insertMany(fakeUsers);
+  console.log("Inserted fake users into the database");
+};
 
 async function connectToDatabase() {
   if (cached.conn) {

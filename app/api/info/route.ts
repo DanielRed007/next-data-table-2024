@@ -1,13 +1,14 @@
-import connectToDatabase from "@/app/lib/mongoose";
+import connectToDatabase, { seedDatabase } from "@/app/lib/mongoose";
 import { NextResponse } from "next/server";
 
-import InfoSchema from "../../models/info";
+import UserSchema from "../../models/user";
 
 export async function GET() {
   try {
+    // await connectToDatabase().then(() => seedDatabase());
     await connectToDatabase();
 
-    const dataTable = await InfoSchema.find();
+    const dataTable = await UserSchema.find().limit(20);
 
     if (dataTable) {
       return NextResponse.json(dataTable, { status: 200 });

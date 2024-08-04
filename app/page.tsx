@@ -19,19 +19,15 @@ export default function Home() {
   }, [dispatch]);
 
   const columns = [
-    { header: "Regular Text", accessor: "regular-col-1" },
-    { header: "Regular Text", accessor: "regular-col-2" },
-    { header: "Regular Text", accessor: "regular-col-3" },
-    { header: "Regular Text", accessor: "regular-col-4" },
-    { header: "Regular Text", accessor: "regular-col-5" },
-    { header: "Regular Text", accessor: "regular-col-6" },
-    { header: "Active", accessor: "active-col-1" },
-    { header: "Regular Text", accessor: "regular-col-7" },
+    { header: "Customer Id", accessor: "_id" },
+    { header: "First Name", accessor: "firstName" },
+    { header: "Last Name", accessor: "lastName" },
+    { header: "Email", accessor: "email" },
+    { header: "Age", accessor: "age" },
+    { header: "Created At", accessor: "createdAt" },
   ];
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
   return (
     <Fragment>
       <TableNavbar />
