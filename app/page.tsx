@@ -7,6 +7,7 @@ import { RootState, AppDispatch } from "./redux/store"; // Adjust the path as ne
 import { TableNavbar } from "./components/navbar/TableNavbar";
 import { RecordTable } from "./components/table/RecordTable";
 import { Row } from "./types/row";
+import Loader from "./components/shared/Loader";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,8 +27,8 @@ export default function Home() {
     { header: "Age", accessor: "age" },
     { header: "Created At", accessor: "createdAt" },
   ];
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <Loader />;
+  if (error) throw new Error(error);
   return (
     <Fragment>
       <TableNavbar />
