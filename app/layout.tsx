@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import ErrorBoundary from "./components/error/ErrorBoundary";
 
 export default function RootLayout({
   children,
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Provider store={store}>{children}</Provider>
+        <ErrorBoundary>
+          <Provider store={store}>{children}</Provider>
+        </ErrorBoundary>
       </body>
     </html>
   );
