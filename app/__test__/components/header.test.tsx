@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../util/test/customRender";
 import { TableNavbar } from "../../components/navbar/TableNavbar";
 
 describe("TableNavbar Test Suite", () => {
