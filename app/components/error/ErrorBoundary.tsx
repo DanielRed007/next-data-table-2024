@@ -1,7 +1,9 @@
-// components/ErrorBoundary.tsx
-
 import React, { Component, ReactNode } from "react";
-import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
+import {
+  ArrowPathIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/solid";
+import { CustomButton } from "../shared/CustomButton";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -16,6 +18,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
+    this.handleRetry = this.handleRetry.bind(this);
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
@@ -24,6 +27,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
+  }
+
+  handleRetry() {
+    window.location.reload();
   }
 
   render() {
@@ -37,6 +44,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             </div>
             <h1 className='text-3xl font-bold'>Something went wrong.</h1>
             <p className='mt-4 text-lg'>{this.state.error?.message}</p>
+            <div className='flex justify-center items-center mt-6'>
+              <CustomButton
+                textColor='white'
+                fontType='bold'
+                buttonText='Retry'
+                icon={
+                  <ArrowPathIcon className='size-6 text-violet-200 dark:text-lime-300' />
+                }
+                onClick={this.handleRetry}
+              />
+            </div>
           </div>
         </div>
       );

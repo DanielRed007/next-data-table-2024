@@ -8,6 +8,7 @@ interface Props {
   fontType: string;
   icon?: ReactElement;
   outline?: boolean;
+  onClick?: () => void;
 }
 
 export const CustomButton: FC<Props> = ({
@@ -17,6 +18,7 @@ export const CustomButton: FC<Props> = ({
   fontType,
   icon,
   outline = false,
+  onClick,
 }) => {
   const colorVariant = getColorVariant(buttonColor);
   const buttonOutline = getOutline(outline);
@@ -25,7 +27,7 @@ export const CustomButton: FC<Props> = ({
 
   return (
     <Fragment>
-      <button className={getButtonProps}>
+      <button className={getButtonProps} onClick={onClick}>
         {icon && <span>{icon}</span>}
         <span>{buttonText}</span>
       </button>
