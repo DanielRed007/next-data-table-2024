@@ -1,9 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
-  ArchiveBoxXMarkIcon,
   EllipsisHorizontalIcon,
   PencilIcon,
-  Square2StackIcon,
   TrashIcon,
 } from "@heroicons/react/16/solid";
 import { Fragment } from "react";
@@ -25,19 +23,6 @@ export const CustomDropdown = () => {
             <button className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'>
               <PencilIcon className='size-4 fill-white' />
               Edit
-            </button>
-          </MenuItem>
-          <MenuItem>
-            <button className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'>
-              <Square2StackIcon className='size-4 fill-white' />
-              Duplicate
-            </button>
-          </MenuItem>
-          <div className='my-1 h-px bg-violet-500 dark:bg-lime-500' />
-          <MenuItem>
-            <button className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'>
-              <ArchiveBoxXMarkIcon className='size-4 fill-white' />
-              Archive
             </button>
           </MenuItem>
           <MenuItem>
