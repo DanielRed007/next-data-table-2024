@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, Fragment, useState } from "react";
 import CustomCheckbox from "../shared/CustomCheckbox";
-import { EllipsisHorizontalIcon } from "@heroicons/react/16/solid";
-import { CustomDropdown } from "../shared/CustomDropdown";
+import { CustomDropdown } from "../shared/CustomEditDropdown";
 import { Row } from "@/app/types/row";
+import { CustomEditModal } from "../shared/CustomEditModal";
 
 interface Props {
   data: any;
@@ -17,30 +17,48 @@ export const CustomTableRow: FC<Props> = ({
   rowChecked,
   onChange,
 }) => {
+  const [isEditModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <tbody>
-      {data.map((row: any, rowIndex: number) => (
-        <tr
-          key={row._id}
-          className='dark:hover:bg-lime-200 hover:bg-violet-200'
-        >
-          <td className='p-4 border-b'>
-            <CustomCheckbox
-              id={`main-selector-${row._id}`}
-              checked={rowChecked}
-              onChange={onChange}
-            />
-          </td>
-          {columns.map((column) => (
-            <td key={column.accessor} className='p-4 border-b'>
-              {row[column.accessor]}
+    <Fragment>
+      <tbody>
+        {data.map((row: any, rowIndex: number) => (
+          <tr
+            key={row._id}
+            className='dark:hover:bg-lime-200 hover:bg-violet-200'
+          >
+            <td className='p-4 border-b'>
+              <CustomCheckbox
+                id={`main-selector-${row._id}`}
+                checked={rowChecked}
+                onChange={onChange}
+              />
             </td>
-          ))}
-          <td className='p-6 border-b'>
-            <CustomDropdown />
-          </td>
-        </tr>
-      ))}
-    </tbody>
+            {columns.map((column) => (
+              <td key={column.accessor} className='p-4 border-b'>
+                {row[column.accessor]}
+              </td>
+            ))}
+            <td className='p-6 border-b'>
+              <CustomDropdown modalEditHandler={openModal} />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+      {isEditModalOpen && (
+        <CustomEditModal
+          isEditModalOpen={isEditModalOpen}
+          closeModal={closeModal}
+        />
+      )}
+    </Fragment>
   );
 };
