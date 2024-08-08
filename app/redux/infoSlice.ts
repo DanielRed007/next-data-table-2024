@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { apiHandler } from "../lib/api/apiHandler";
+import { errorHandler } from "../util/error/error";
 
 interface InfoState {
   data: any;
@@ -24,6 +25,9 @@ export const fetchInfo = createAsyncThunk(
       });
 
       const data = await response.json();
+
+      !Array.isArray(data) && data.error && errorHandler(data);
+
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message || "An error occurred");
