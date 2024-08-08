@@ -15,9 +15,10 @@ export async function GET() {
       return NextResponse.json({ msg: "No Profiles Found" }, { status: 404 });
     }
   } catch (error: any) {
+    // Implement logger library for error server events
     console.error("Database connection or query error:", error);
     return NextResponse.json(
-      { msg: "Internal Server Error", error: error },
+      { msg: "Database connection or query error:", error: error },
       { status: 500 }
     );
   }
