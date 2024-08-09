@@ -1,16 +1,27 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   EllipsisHorizontalIcon,
   PencilIcon,
   TrashIcon,
 } from "@heroicons/react/16/solid";
+import { CustomEditModal } from "./CustomEditModal";
 
 interface Props {
-  modalEditHandler: () => void;
+  record: any;
 }
 
-export const CustomDropdown: FC<Props> = ({ modalEditHandler }) => {
+export const CustomDropdown: FC<Props> = ({ record }) => {
+  const [isEditModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <Fragment>
       <Menu>
@@ -25,7 +36,7 @@ export const CustomDropdown: FC<Props> = ({ modalEditHandler }) => {
         >
           <MenuItem>
             <button
-              onClick={modalEditHandler}
+              onClick={openModal}
               className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'
             >
               <PencilIcon className='size-4 fill-white' />
@@ -40,6 +51,13 @@ export const CustomDropdown: FC<Props> = ({ modalEditHandler }) => {
           </MenuItem>
         </MenuItems>
       </Menu>
+      {isEditModalOpen && (
+        <CustomEditModal
+          isEditModalOpen={isEditModalOpen}
+          closeModal={closeModal}
+          record={record}
+        />
+      )}
     </Fragment>
   );
 };
