@@ -17,16 +17,6 @@ export const CustomTableRow: FC<Props> = ({
   rowChecked,
   onChange,
 }) => {
-  const [isEditModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <Fragment>
       <tbody>
@@ -48,17 +38,11 @@ export const CustomTableRow: FC<Props> = ({
               </td>
             ))}
             <td className='p-6 border-b'>
-              <CustomDropdown modalEditHandler={openModal} />
+              <CustomDropdown record={row} />
             </td>
           </tr>
         ))}
       </tbody>
-      {isEditModalOpen && (
-        <CustomEditModal
-          isEditModalOpen={isEditModalOpen}
-          closeModal={closeModal}
-        />
-      )}
     </Fragment>
   );
 };
