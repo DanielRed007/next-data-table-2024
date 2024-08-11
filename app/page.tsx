@@ -2,8 +2,8 @@
 
 import { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchInfo } from "./redux/infoSlice"; // Adjust the path as necessary
-import { RootState, AppDispatch } from "./redux/store"; // Adjust the path as necessary
+import { fetchInfo } from "./redux/infoSlice";
+import { RootState, AppDispatch } from "./redux/store";
 import { TableNavbar } from "./components/navbar/TableNavbar";
 import { RecordTable } from "./components/table/RecordTable";
 import { Row } from "./types/row";

@@ -26,9 +26,37 @@ export const fetchInfo = createAsyncThunk(
 
       const data = await response.json();
 
-      !Array.isArray(data) && data.error && errorHandler(data);
+      if (!Array.isArray(data) && data.error) {
+        errorHandler(data);
+        return rejectWithValue(data.error);
+      }
 
       return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message || "An error occurred");
+    }
+  }
+);
+
+export const updateInfo = createAsyncThunk(
+  "info/updateInfo",
+  async (updatedData: any, { dispatch, rejectWithValue }) => {
+    const formatBody = JSON.stringify(updatedData);
+
+    try {
+      const response = await apiHandler({
+        endpoint: "/api/info",
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        requestBody: updatedData,
+      });
+
+      const data = await response.json();
+      console.table(response);
+
+      if (response.ok) {
+        dispatch(fetchInfo());
+      }
     } catch (error: any) {
       return rejectWithValue(error.message || "An error occurred");
     }
@@ -50,6 +78,18 @@ const infoSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchInfo.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateInfo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateInfo.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(updateInfo.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       });

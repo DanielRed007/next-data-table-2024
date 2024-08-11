@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import connectToDatabase from "@/app/lib/mongoose";
 import { NextResponse } from "next/server";
 
@@ -19,6 +20,37 @@ export async function GET() {
     console.error("Database connection or query error:", error);
     return NextResponse.json(
       { msg: "Database connection or query error:", error: error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req: Request) {
+  try {
+    await connectToDatabase();
+
+    const body = await req.json();
+    const { _id, ...updateData } = body;
+
+    if (!_id || !ObjectId.isValid(_id)) {
+      return NextResponse.json({ msg: "Invalid ID" }, { status: 400 });
+    }
+
+    const updatedUser = await UserSchema.findOneAndUpdate(
+      { _id: new ObjectId(_id) },
+      { $set: updateData },
+      { new: true }
+    );
+
+    if (updatedUser) {
+      return NextResponse.json(updatedUser, { status: 200 });
+    } else {
+      return NextResponse.json({ msg: "User not found" }, { status: 404 });
+    }
+  } catch (error: any) {
+    console.error("Error updating user:", error);
+    return NextResponse.json(
+      { msg: "Error updating user", error: error.message },
       { status: 500 }
     );
   }

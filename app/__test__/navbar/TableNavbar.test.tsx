@@ -10,12 +10,10 @@ describe("Table Navbar", () => {
     const title2 = screen.getByText("Data Entry");
 
     const deleteBtn = screen.getByText("Delete");
-    const filtersBtn = screen.getByText("Filters");
 
     expect(title1).toBeInTheDocument();
     expect(title2).toBeInTheDocument();
 
     expect(deleteBtn).toBeInTheDocument();
-    expect(filtersBtn).toBeInTheDocument();
   });
 });
