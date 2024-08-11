@@ -6,6 +6,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/16/solid";
 import { CustomEditModal } from "./CustomEditModal";
+import { CustomDeleteModal } from "./CustomDeleteModal";
 
 interface Props {
   record: any;
@@ -13,6 +14,7 @@ interface Props {
 
 export const CustomDropdown: FC<Props> = ({ record }) => {
   const [isEditModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -20,6 +22,14 @@ export const CustomDropdown: FC<Props> = ({ record }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleDeleteRecord = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -44,7 +54,10 @@ export const CustomDropdown: FC<Props> = ({ record }) => {
             </button>
           </MenuItem>
           <MenuItem>
-            <button className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'>
+            <button
+              onClick={handleDeleteRecord}
+              className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 focus:bg-violet-500 dark:focus:bg-lime-700'
+            >
               <TrashIcon className='size-4 fill-white' />
               Delete
             </button>
@@ -56,6 +69,13 @@ export const CustomDropdown: FC<Props> = ({ record }) => {
           isEditModalOpen={isEditModalOpen}
           closeModal={closeModal}
           record={record}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <CustomDeleteModal
+          record={record}
+          closeModal={closeDeleteModal}
+          isDeleteModalOpen={isDeleteModalOpen}
         />
       )}
     </Fragment>

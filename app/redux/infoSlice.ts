@@ -51,7 +51,26 @@ export const updateInfo = createAsyncThunk(
         requestBody: updatedData,
       });
 
-      const data = await response.json();
+      if (response.ok) {
+        dispatch(fetchInfo());
+      }
+    } catch (error: any) {
+      return rejectWithValue(error.message || "An error occurred");
+    }
+  }
+);
+
+export const deleteInfo = createAsyncThunk(
+  "info/deleteInfo",
+  async (_id: string, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await apiHandler({
+        endpoint: "/api/info",
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        requestBody: { _id },
+      });
+
       console.table(response);
 
       if (response.ok) {
@@ -90,6 +109,18 @@ const infoSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(updateInfo.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteInfo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteInfo.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(deleteInfo.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       });
