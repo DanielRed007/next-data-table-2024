@@ -54,14 +54,6 @@ export const TableNavbar = () => {
           <CustomButton
             textColor='white'
             fontType='bold'
-            buttonText='Filters'
-            icon={
-              <AdjustmentsHorizontalIcon className='size-6 text-violet-200 dark:text-lime-300' />
-            }
-          />
-          <CustomButton
-            textColor='white'
-            fontType='bold'
             buttonText='Export'
             outline={true}
             icon={
