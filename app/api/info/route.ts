@@ -55,3 +55,31 @@ export async function PUT(req: Request) {
     );
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    await connectToDatabase();
+
+    const body = await req.json();
+    const { _id } = body;
+    console.log(_id, body);
+
+    if (!_id || !ObjectId.isValid(_id)) {
+      return NextResponse.json({ msg: "Invalid ID" }, { status: 400 });
+    }
+
+    const deletedUser = await UserSchema.deleteOne({ _id: new ObjectId(_id) });
+
+    if (deletedUser) {
+      return NextResponse.json(deletedUser, { status: 200 });
+    } else {
+      return NextResponse.json({ msg: "User not found" }, { status: 404 });
+    }
+  } catch (error: any) {
+    console.error("Error updating user:", error);
+    return NextResponse.json(
+      { msg: "Error updating user", error: error.message },
+      { status: 500 }
+    );
+  }
+}
