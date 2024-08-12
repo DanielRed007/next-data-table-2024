@@ -41,14 +41,32 @@ export const fetchInfo = createAsyncThunk(
 export const updateInfo = createAsyncThunk(
   "info/updateInfo",
   async (updatedData: any, { dispatch, rejectWithValue }) => {
-    const formatBody = JSON.stringify(updatedData);
-
     try {
       const response = await apiHandler({
         endpoint: "/api/info",
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         requestBody: updatedData,
+      });
+
+      if (response.ok) {
+        dispatch(fetchInfo());
+      }
+    } catch (error: any) {
+      return rejectWithValue(error.message || "An error occurred");
+    }
+  }
+);
+
+export const addInfo = createAsyncThunk(
+  "info/addInfo",
+  async (newData: any, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await apiHandler({
+        endpoint: "/api/info",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        requestBody: newData,
       });
 
       if (response.ok) {
@@ -121,6 +139,18 @@ const infoSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(deleteInfo.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(addInfo.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addInfo.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(addInfo.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       });

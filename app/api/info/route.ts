@@ -8,7 +8,7 @@ export async function GET() {
   try {
     await connectToDatabase();
 
-    const dataTable = await UserSchema.find().limit(20);
+    const dataTable = await UserSchema.find().sort({ createdAt: -1 }).limit(20);
 
     if (dataTable.length > 0) {
       return NextResponse.json(dataTable, { status: 200 });
@@ -20,6 +20,25 @@ export async function GET() {
     console.error("Database connection or query error:", error);
     return NextResponse.json(
       { msg: "Database connection or query error:", error: error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    await connectToDatabase();
+
+    const body = await request.json(); // Parse the incoming request body
+    const newUser = new UserSchema(body); // Create a new instance of the UserSchema with the parsed data
+
+    const savedUser = await newUser.save(); // Save the new user to the database
+
+    return NextResponse.json(savedUser, { status: 201 }); // Return the saved user data with a 201 Created status
+  } catch (error: any) {
+    console.error("Error saving user to the database:", error);
+    return NextResponse.json(
+      { msg: "Error saving user to the database:", error: error.message },
       { status: 500 }
     );
   }
