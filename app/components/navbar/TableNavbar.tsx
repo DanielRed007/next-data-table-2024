@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { CustomButton } from "../shared/CustomButton";
 import {
   AdjustmentsHorizontalIcon,
@@ -13,8 +13,10 @@ import { CustomSwitch } from "../shared/CustomSwitch";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { toggleTheme } from "../../redux/themeSlice";
+import { CustomAddModal } from "../shared/CustomAddModal";
 
 export const TableNavbar = () => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const dispatch = useAppDispatch();
   const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -29,6 +31,14 @@ export const TableNavbar = () => {
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
+  };
+
+  const openModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsAddModalOpen(false);
   };
 
   return (
@@ -68,9 +78,16 @@ export const TableNavbar = () => {
             icon={
               <PlusIcon className='size-6 text-violet-200 dark:text-lime-300' />
             }
+            onClick={openModal}
           />
         </div>
       </nav>
+      {isAddModalOpen && (
+        <CustomAddModal
+          isAddModalOpen={isAddModalOpen}
+          closeModal={closeModal}
+        />
+      )}
     </Fragment>
   );
 };
