@@ -10,9 +10,10 @@ import { CustomDeleteModal } from "./CustomDeleteModal";
 
 interface Props {
   record: any;
+  id: string;
 }
 
-export const CustomDropdown: FC<Props> = ({ record }) => {
+export const CustomDropdown: FC<Props> = ({ record, id }) => {
   const [isEditModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -35,7 +36,10 @@ export const CustomDropdown: FC<Props> = ({ record }) => {
   return (
     <Fragment>
       <Menu>
-        <MenuButton className='inline-flex items-center gap-2 rounded-md mt-1 bg-transparent text-sm/6 font-semibold text-white shadow-white focus:outline-none open:bg-gray-700 focus:outline-1 focus:outline-white'>
+        <MenuButton
+          data-testid={id}
+          className='inline-flex items-center gap-2 rounded-md mt-1 bg-transparent text-sm/6 font-semibold text-white shadow-white focus:outline-none open:bg-gray-700 focus:outline-1 focus:outline-white'
+        >
           <EllipsisHorizontalIcon className='size-5 fill-violet-700 dark:fill-lime-700' />
         </MenuButton>
 

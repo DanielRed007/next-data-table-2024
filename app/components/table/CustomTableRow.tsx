@@ -38,7 +38,7 @@ export const CustomTableRow: FC<Props> = ({
               </td>
             ))}
             <td className='p-6 border-b'>
-              <CustomDropdown record={row} />
+              <CustomDropdown record={row} id={row._id} />
             </td>
           </tr>
         ))}
