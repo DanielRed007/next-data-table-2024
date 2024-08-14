@@ -14,11 +14,13 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { toggleTheme } from "../../redux/themeSlice";
 import { CustomAddModal } from "../shared/CustomAddModal";
+import { generatePDF } from "@/app/util/pdf/pdfGenerator";
 
 export const TableNavbar = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const dispatch = useAppDispatch();
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const { data } = useSelector((state: RootState) => state.info);
 
   // Effect to add/remove dark class on body
   useEffect(() => {
@@ -28,6 +30,10 @@ export const TableNavbar = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
+  const handleDownload = () => {
+    generatePDF(data);
+  };
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
@@ -64,11 +70,12 @@ export const TableNavbar = () => {
           <CustomButton
             textColor='white'
             fontType='bold'
-            buttonText='Export'
+            buttonText='Export PDF'
             outline={true}
             icon={
               <CloudArrowDownIcon className='size-6 text-violet-200 dark:text-lime-300' />
             }
+            onClick={handleDownload}
           />
           <CustomButton
             buttonColor='blue'
