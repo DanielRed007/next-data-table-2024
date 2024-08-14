@@ -9,11 +9,11 @@ describe("Table Navbar", () => {
     const title1 = screen.getByText("Record Data Registry");
     const title2 = screen.getByText("Data Entry");
 
-    const deleteBtn = screen.getByText("Delete");
+    const exportBtn = screen.getByText("Export PDF");
 
     expect(title1).toBeInTheDocument();
     expect(title2).toBeInTheDocument();
 
-    expect(deleteBtn).toBeInTheDocument();
+    expect(exportBtn).toBeInTheDocument();
   });
 });
